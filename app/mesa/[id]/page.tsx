@@ -1,9 +1,17 @@
 import { MenuCard } from "@/components/MenuCard";
 import { menu } from "@/lib/data";
+import QRGenerator from "@/components/QRGenerator";
 
-export default function HomePage() {
+export default function MesaPage({ params }: { params: { id: string } }) {
+  const mesaId = params.id;
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+        <h1 className="text-3xl font-semibold">Carta - Mesa {mesaId}</h1>
+        <QRGenerator mesaId={mesaId} />
+      </div>
+
       {Object.entries(menu).map(([categoria, productos]) => (
         <section key={categoria}>
           <h2 className="text-2xl font-semibold mb-4 capitalize">{categoria}</h2>
